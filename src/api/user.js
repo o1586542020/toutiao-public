@@ -1,0 +1,47 @@
+
+import request from "@/utils/request";
+// 登录模块接口
+ export const login = data => {
+     return request({
+        method: "POST",
+        url: "/mp/v1_0/authorizations",
+        data
+     })
+ }
+//  获取用户头像信息
+export const getUserProfile = () => {
+    // const user =JSON.parse(window.localStorage.getItem('user'));
+    return request({
+      method: 'GET',
+      url: '/mp/v1_0/user/profile',
+      // 后端要求把需要授权的用户身份放到请求头中
+      // axios 可以通过 headers 选项设置请求头
+      headers: {
+        // 属性名和值都得看接口的要求
+        // 属性名：Authorization，接口要求的
+        // 属性值：Bearer空格token数据
+        // Authorization: `Bearer ${user.token}`
+      }
+    })
+
+ }
+
+// 更改用户头像
+export const changePhoto = data =>{
+   return request({
+     url:"/mp/v1_0/user/photo",
+     method:'PATCH',
+     data
+
+   })
+}
+
+// 编辑用户资料
+export const changeuserInfo = data =>{
+  return request({
+    url:"/mp/v1_0/user/profile",
+    method:'PATCH',
+    data
+
+  })
+}
